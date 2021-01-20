@@ -1,0 +1,46 @@
+global:
+  name: consul
+  datacenter: dc-1
+  image: consul:1.9.0
+  imageK8S: hashicorp/consul-k8s:0.22.0
+server:
+  replicas: 1
+  bootstrapExpect: 1
+  disruptionBudget:
+    enabled: true
+    maxUnavailable: 0
+  extraConfig: |
+    {
+      "telemetry": {
+        "prometheus_retention_time": "10s"
+      },
+      "ui_config": {
+        "enabled": true,
+        "metrics_provider": "prometheus",
+        "metrics_proxy": {
+          "base_url": "http://prometheus-server"
+        },
+        "dashboard_url_templates": {
+          "service": "http://35.224.163.42/d/hashicups/hcj-app?orgId=1&refresh=30s"
+        }
+      }
+    }
+client:
+  enabled: true
+  grpc: true
+
+ui:
+  enabled: true
+  service:
+    type: LoadBalancer
+
+connectInject:
+  enabled: true
+  default: true
+  centralConfig:
+    enabled: true
+    defaultProtocol: "http"
+    proxyDefaults: |
+      {
+        "envoy_prometheus_bind_addr": "0.0.0.0:9102"
+      }

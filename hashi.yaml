@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hashi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hashi
+  labels:
+    app: "hashi"
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9102"
+    consul.hashicorp.com/connect-inject: "true"
+spec:
+  serviceAccountName: hashi
+  containers:
+    - name: hashi
+      image: gcr.io/se-kabu/hashiapp:latest
+      ports:
+        - containerPort: 8080
+          name: http
