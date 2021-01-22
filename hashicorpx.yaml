@@ -1,24 +1,24 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: hashicorpjapan
+  name: hashicorpx
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hashicorpjapan
+  name: hashicorpx
   labels:
-    app: "hashicorpjapan"
+    app: "hashicorpx"
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "9102"
     consul.hashicorp.com/connect-inject: "true"
-    consul.hashicorp.com/connect-service-upstreams: "hashi:5000, corp:5001"
+    consul.hashicorp.com/connect-service-upstreams: "hashi:5000, corpx:5001"
 spec:
-  serviceAccountName: hashicorpjapan
+  serviceAccountName: hashicorpx
   containers:
-    - name: hashicorpjapan
-      image: gcr.io/se-kabu/hcjapp:latest
+    - name: hashicorpx
+      image: gcr.io/se-kabu/hcxapp:latest
       ports:
         - containerPort: 8080
           name: http
@@ -26,15 +26,15 @@ spec:
 apiVersion: "v1"
 kind: "Service"
 metadata:
-  name: "hashicorpjapan-lb"
+  name: "hashicorpx-lb"
   namespace: "onecluster-servicemesh"
   labels:
-    app: "hashicorpjapan"
+    app: "hashicorpx"
 spec:
   ports:
     - protocol: "TCP"
       port: 8080
       targetPort: 8080
   selector:
-    app: "hashicorpjapan"
+    app: "hashicorpx"
   type: "LoadBalancer"
