@@ -1,5 +1,3 @@
-adminPassword: password
-
 datasources:
   datasources.yaml:
     apiVersion: 1
