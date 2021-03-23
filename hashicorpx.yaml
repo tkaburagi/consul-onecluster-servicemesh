@@ -23,10 +23,10 @@ spec:
         - containerPort: 8080
           name: http
 ---
-apiVersion: "v1"
-kind: "Service"
+apiVersion: v1
+kind: Service
 metadata:
-  name: "hashicorpx-lb"
+  name: hashicorpx-lb
   namespace: "onecluster-servicemesh"
   labels:
     app: "hashicorpx"

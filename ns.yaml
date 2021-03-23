@@ -1,6 +1,6 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: onecluster-servicemesh
-  labels:
-    name: onecluster-servicemesh
+ name: onecluster-servicemesh
+ labels:
+   name: onecluster-servicemesh
