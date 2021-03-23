@@ -1,0 +1,12 @@
+{
+  "ID": "france-france",
+  "Name": "france",
+  "Address": "10.4.1.86",
+  "Port": 8080,
+  "check": {
+    "http": "http://10.4.1.86:8080/api/france",
+    "interval": "1s",
+    "timeout": "1s"
+   }
+}
+EOF

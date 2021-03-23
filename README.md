@@ -21,12 +21,13 @@ helm install -f helm/zipkin-values.yaml jaeger-all-in-one jaeger-all-in-one/jaeg
 
 ## deploy apps
 ```shell script
-./deploy.sh 0
+./deploy.sh create
 ```
 
 ## setup proxy config
 ```shell script
 export CONSUL_HTTP_ADDR=xxx
+consul config write proxy-config/proxy-defaults.hcl
 consul config write proxy-config/country-svc-defaults.hcl
 consul config write proxy-config/japan-svc-defaults.hcl
 consul config write proxy-config/france-svc-defaults.hcl

@@ -1,6 +1,7 @@
 Kind      = "proxy-defaults"
 Name      = "global"
 Config {
+  protocol = "http"
   envoy_prometheus_bind_addr = "0.0.0.0:9102"
   envoy_extra_static_clusters_json = <<EOL
     {
@@ -38,7 +39,8 @@ Config {
             "name": "envoy.zipkin",
             "config": {
                 "collector_cluster": "zipkin",
-                "collector_endpoint": "/api/v1/spans"
+                "collector_endpoint": "/api/v1/spans",
+                "shared_span_context": "false"
             }
         }
     }
